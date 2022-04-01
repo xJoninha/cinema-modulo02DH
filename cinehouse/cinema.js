@@ -1,8 +1,6 @@
 const catalogo = require("./database/catalogo.json")
-const cinema = "CineJonas"
-console.log(cinema)
-
-
+// const cinema = "CineJonas"
+// console.log(cinema)
 
 const adicionarFilme = filme => catalogo.push(filme)
 const testarAdicionarFilme = () => {
@@ -17,7 +15,7 @@ const testarAdicionarFilme = () => {
     })
     console.log(`Agora temos ${catalogo.lenght} filmes no catálogo!`)
 }
-testarAdicionarFilme()
+// testarAdicionarFilme()
 
 const buscarFilme = codigo => {
     for(let filme of catalogo){
@@ -30,22 +28,46 @@ const testarBuscarFilme = () => {
     buscarFilme(1)
     buscarFilme(2)
 }
-testarBuscarFilme()
+// testarBuscarFilme()
 
 const alterarStatusEmCartaz = codigo => {
-    for(let filme of catalogo) {
-        if (filme.codigo === codigo) {
-            console.log(`Status do filme ${filme.titulo} (código ${codigo}) antes: ${filme.emCartaz}`)
-            filme.emCartaz = filme.emCartaz ? false : true
-            console.log(`Status do filme ${filme.titulo} (código ${codigo}) depois: ${filme.emCartaz}`)
+        let resultado = buscarFilme(codigo)
+        if (resultado && resultado.titulo) {
+            let {
+                titulo,
+                emCartaz
+            } = resultado
+            console.log(`Status do filme ${titulo} (código ${codigo}) antes: ${filme.emCartaz}`)
+            emCartaz = !emCartaz
+            console.log(`Status do filme ${titulo} (código ${codigo}) depois: ${filme.emCartaz}`)
         }
+        return resultado
     }
-}
 const testarAlterarStatusEmCartaz = () => {
     alterarStatusEmCartaz(1)
     alterarStatusEmCartaz(2)
 }
-testarAlterarStatusEmCartaz()
+// testarAlterarStatusEmCartaz()
+
+// Função de apoio
+const mostrarDetalhesFilme = filme => {
+    const {
+        titulo,
+        codigo,
+        anoDeLancamento,
+        duracao,
+        atores,
+        emCartaz
+    } = filme
+    return `
+    Título: ${titulo}
+    Código: ${codigo}
+    Ano: ${anoDeLancamento}
+    Duração (hrs): ${duracao}
+    Atores: ${atores.join(', ')}
+    Status: ${emCartaz ? "Em Cartaz!" : "Não está em cartaz."}
+    `
+}
 
 const listarTodosOsFilmes = () => {
     for (let filme of catalogo) {

@@ -33,11 +33,11 @@ const testarBuscarFilme = () => {
 testarBuscarFilme()
 
 const alterarStatusEmCartaz = codigo => {
-    for (let filme of catalogo){
-        if (filme.codigo === codigo){
-            console.log(`Status do filme ${filme.titulo} (código: ${codigo}) antes: ${filme.emCartaz}`)
-            filme.emCartaz = !filme.emCartaz
-            console.log(`Status do filme ${filme.titulo} (Código: ${codigo}) depois: ${filme.emCartaz}`)
+    for(let filme of catalogo) {
+        if (filme.codigo === codigo) {
+            console.log(`Status do filme ${filme.titulo} (código ${codigo}) antes: ${filme.emCartaz}`)
+            filme.emCartaz = filme.emCartaz ? false : true
+            console.log(`Status do filme ${filme.titulo} (código ${codigo}) depois: ${filme.emCartaz}`)
         }
     }
 }
@@ -46,3 +46,35 @@ const testarAlterarStatusEmCartaz = () => {
     alterarStatusEmCartaz(2)
 }
 testarAlterarStatusEmCartaz()
+
+const listarTodosOsFilmes = () => {
+    for (let filme of catalogo) {
+        console.log(`
+            Título: ${filme.titulo}
+            Código: ${filme.codigo}
+            Ano: ${filme.anoDeLancamento}
+            Duração: ${filme.duracao}
+            Atores: ${filme.atores.join(', ')}
+            Status: ${filme.emCartaz ? "Em Cartaz!" : "Não está em cartaz."}
+        `)
+    }
+}
+const testarListarTodosOsFilmes = () => listarTodosOsFilmes()
+testarListarTodosOsFilmes()
+
+const listarFilmesEmCartaz = () => {
+    for(let filme of catalogo){
+        if (filme.emCartaz) {
+            console.log(`
+            Título: ${filme.titulo}
+            Código: ${filme.codigo}
+            Ano: ${filme.anoDeLancamento}
+            Duração: ${filme.duracao}
+            Atores: ${filme.atores.join(', ')}
+            Status: ${filme.emCartaz ? "Em Cartaz!" : "Não está em cartaz."}
+            `)
+        }
+    }
+}
+const testarListarFilmesEmCartaz = () => listarFilmesEmCartaz()
+testarListarFilmesEmCartaz()

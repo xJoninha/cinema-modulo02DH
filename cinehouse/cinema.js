@@ -1,2 +1,19 @@
 const cinema = "CineJonas"
 console.log(cinema)
+
+const catalogo = [{
+    codigo: 1,
+    titulo: "Titanic",
+    duracao: 2.30,
+    atores: ["Kate Winslet", "Leonardo DiCaprio", "Billy Zane", "Bill Paxton"],
+    anoDeLancamento: 1997,
+    emCartaz: false
+},
+{
+    codigo: 2,
+    titulo: "Os Vingadores",
+    duracao: 2.40,
+    atores: ["Scarlett Jogansson", "Robert Downey Jr.", "Chris Evans", "Chris Hemsworth"],
+    anoDeLancamento: 2012,
+    emCartaz: true
+}]
